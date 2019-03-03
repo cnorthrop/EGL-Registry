@@ -1,0 +1,75 @@
+Name
+
+    ANDROID_GLES_layers
+
+Name Strings
+
+    EGL_ANDROID_GLES_layers
+
+Contributors
+
+    Cody Northrop
+
+Contact
+
+    Cody Northrop, Google LLC (cnorthrop 'at' google.com)
+
+Status
+
+    Draft
+
+Version
+
+    Version 1, March 3, 2019
+
+Number
+
+    EGL Extension #XXX
+
+Dependencies
+
+    Requires EGL 1.0
+
+Overview
+
+    This extension indicates the EGL loader supports
+    GLES layering on Android. When EGL starts up, the loader
+    may call the following two functions, which must be
+    exposed by layers:
+
+    typedef __eglMustCastToProperFunctionPointerType(
+        EGLAPIENTRY *PFNEGLGETNEXTLAYERPROCADDRESSPROC)(
+        void *, const char *funcName);
+
+    void AndroidGLESLayer_Initialize(
+        void *layer_id,
+        PFNEGLGETNEXTLAYERPROCADDRESSPROC next_gpa);
+
+    void *AndroidGLESLayer_GetProcAddress(
+        const char *funcName,
+        __eglMustCastToProperFunctionPointerType next)
+
+    The loader will only call those functions for
+    selected applications, chosen by Android specific
+    means.
+
+New Types
+
+    None
+
+New Procedures and Functions
+
+    None
+
+New Tokens
+
+    None
+
+Issues
+
+    None
+
+Revision History
+
+#1 (Cody Northrop, March 3, 2019)
+    - Initial draft.
